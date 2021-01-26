@@ -5,7 +5,7 @@ export default function Launch() {
   const [channel, setChannel] = useState('');
 
   const handleOnInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChannel(event.target.value)
+    setChannel(event.target.value);
   }
 
   return (
