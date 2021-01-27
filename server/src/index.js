@@ -1,19 +1,21 @@
-const app = require('express')();
-const server = require('http').createServer(app);
+const server = require('http').createServer();
 const io = require('socket.io')(server);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+const PORT = 3000;
+const MESSAGE_EVENT = 'newMessage';
 
 io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+  const { chatId } = socket.handshake.query;
+  socket.join(chatId);
+
+  socket.on(MESSAGE_EVENT, (msg) => {
+    io.in(chatId).emit(MESSAGE_EVENT, msg);
   });
   socket.on('disconnect', () => {
+    socket.leave(chatId);
   })
 });
 
-server.listen(3000, () => {
-  console.log('listening');
+server.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
