@@ -3,12 +3,6 @@ import { useRouteMatch } from 'react-router-dom';
 
 import useChat from './hooks/useChat';
 
-export interface Message {
-  body: string;
-  user: string;
-  currentUser: boolean;
-}
-
 export interface MatchParams {
   channel: string;
 }
