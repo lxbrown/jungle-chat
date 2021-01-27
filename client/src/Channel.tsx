@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import useChat from './hooks/useChat';
+import useChat from './hooks/useChat2';
 
 export interface MatchParams {
   channel: string;

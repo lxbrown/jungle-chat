@@ -3,12 +3,28 @@ import { io, Socket } from "socket.io-client";
 
 import { Message } from '../interfaces';
 
+const JOIN_CHAT_EVENT = "chat:join";
+const LEAVE_CHAT_EVENT = "chat:leave";
 const NEW_CHAT_MESSAGE_EVENT = "chat:message";
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useChat = (chatId: string) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const socketRef = useRef<Socket>();
+  
+  useEffect(() => {
+    socketRef.current = io(SOCKET_SERVER_URL, {
+      query: { chatId },
+    });
+    const current = socketRef.current;
+
+    console.log('joining');
+    current.emit(JOIN_CHAT_EVENT);
+    
+    return () => {
+      current.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     socketRef.current = io(SOCKET_SERVER_URL, {
@@ -16,7 +32,6 @@ const useChat = (chatId: string) => {
     });
     const current = socketRef.current;
 
-    // Listens for incoming messages
     current.on(NEW_CHAT_MESSAGE_EVENT, (message: Message) => {
       const incomingMessage = {
         ...message,
@@ -24,16 +39,8 @@ const useChat = (chatId: string) => {
       };
       setMessages((messages) => [...messages, incomingMessage]);
     });
-    
-    // Destroys the socket reference
-    // when the connection is closed
-    return () => {
-      current.disconnect();
-    };
   }, [chatId]);
 
-  // Sends a message to the server that
-  // forwards it to all users in the same room
   const sendMessage = (messageText: string) => {
     if (!socketRef.current) return;
 

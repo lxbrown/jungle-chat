@@ -5,19 +5,19 @@ const io = require('socket.io')(server, {
   }
 });
 
+const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
+
 const PORT = 4000;
-const MESSAGE_EVENT = 'newMessage';
 
 io.on('connection', (socket) => {
-  const { chatId } = socket.handshake.query;
-  socket.join(chatId);
+  console.log('connect');
+  socket.on('chat:join', joinChat);
+  socket.on('chat:message', sendMessage);
+  socket.on('chat:leave', leaveChat);
 
-  socket.on(MESSAGE_EVENT, (msg) => {
-    io.in(chatId).emit(MESSAGE_EVENT, msg);
-  });
   socket.on('disconnect', () => {
-    socket.leave(chatId);
-  })
+    console.log('dc');
+  });
 });
 
 server.listen(PORT);
