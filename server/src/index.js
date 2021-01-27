@@ -1,7 +1,11 @@
 const server = require('http').createServer();
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "*"
+  }
+});
 
-const PORT = 3000;
+const PORT = 4000;
 const MESSAGE_EVENT = 'newMessage';
 
 io.on('connection', (socket) => {
@@ -16,6 +20,4 @@ io.on('connection', (socket) => {
   })
 });
 
-server.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+server.listen(PORT);
