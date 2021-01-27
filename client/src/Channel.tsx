@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-export interface MatchParams {
-  channel: string;
-}
+import useChat from './hooks/useChat';
 
 export interface Message {
   body: string;
@@ -11,10 +9,16 @@ export interface Message {
   currentUser: boolean;
 }
 
+export interface MatchParams {
+  channel: string;
+}
+
 export default function Channel() {
   const match = useRouteMatch<MatchParams>('/:channel');
+  const channel = match?.params.channel ? match?.params.channel : 'Unknown';
+
+  const {messages, sendMessage} = useChat(channel);
   const [messageText, setMessageText] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
 
   const handleOnMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(event.target.value);
@@ -25,19 +29,9 @@ export default function Channel() {
     setMessageText('');
   }
 
-  function sendMessage(text: string) {
-    const message: Message = {
-      body: text,
-      user: '',
-      currentUser: true
-    }
-    setMessages(messages => [...messages, message]);
-    return;
-  }
-
   return (
     <div className="channel-container">
-      <h3>{match?.params.channel ? match?.params.channel : 'Unknown'}</h3>
+      <h3>{channel}</h3>
       <div className="message-container">
         <ol className="messages">
           {messages.map((message, i) => (
