@@ -1,16 +1,14 @@
-add node/django server
+add web socket support to client
+  * fix useChat and Channel (typescript issues)
+  * test connection to back-end
 
-research best approach to run a chat server and, if needed, message history
+don't allow unknown channels on client
+
+add channel history persistence
 
 add api call for message history (last 20?)
 
-open web socket for ongoing feed
-
 research and add web sockets to server
-
-add web socket support to client
-
-on post, save message and notify all other clients
 
 profanity filter when server processing message (tree words aren't allowed)
 
