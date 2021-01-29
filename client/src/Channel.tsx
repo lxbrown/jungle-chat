@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import useChat from './hooks/useChat2';
-
+import useChat from './hooks/useChat';
+ 
 export interface MatchParams {
   channel: string;
 }
@@ -15,10 +15,12 @@ export default function Channel() {
   const [messageText, setMessageText] = useState('');
 
   const handleOnMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('Channel:setting message text')
     setMessageText(event.target.value);
   }
 
   const handleSend = () => {
+    console.log('Channel:sending')
     sendMessage(messageText);
     setMessageText('');
   }

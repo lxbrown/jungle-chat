@@ -1,18 +1,15 @@
 module.exports = (io) => {
-  const joinChat = function () {
-    const chatId = chatIdFromSocket(this);
+  const joinChat = function (chatId) {
     console.log(`joining ${chatId}`);
     this.join(chatId);
   };
   
-  const leaveChat = function () {
-    const chatId = chatIdFromSocket(this);
+  const leaveChat = function (chatId) {
     console.log(`leaving ${chatId}`);
     this.leave(chatId);
   };
   
-  const sendMessage = function (message) {
-    const chatId = chatIdFromSocket(this);
+  const sendMessage = function (chatId, message) {
     console.log(`messaging ${chatId}`)
     io.in(chatId).emit('chat:message', message);
   };
