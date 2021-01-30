@@ -17,7 +17,6 @@ const useLaunch = () => {
 
     socket.on(CHANNEL_UPDATE_EVENT, (allChannels: Channel[]) => {
       console.log('useLaunch:effect - received update');
-      console.log(allChannels);
       setChannels(allChannels);
     });
     
