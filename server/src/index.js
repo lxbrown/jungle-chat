@@ -6,6 +6,7 @@ const io = require('socket.io')(server, {
 });
 
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
+const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
 
 const PORT = 4000;
 
@@ -15,9 +16,14 @@ io.on('connection', (socket) => {
   socket.on('chat:message', sendMessage);
   socket.on('chat:leave', leaveChat);
 
-  socket.on('disconnect', () => {
-    console.log('dc');
-  });
+  socket.on('launch:join', joinLaunch);
+  socket.on('launch:message', leaveLaunch);
+
+  socket.on('chat:join', refreshChannels);
+  socket.on('chat:leave', refreshChannels);
+
+  socket.on('disconnect', refreshChannels);
+  socket.on('disconnect', () => { console.log('dc') });
 });
 
 server.listen(PORT);
