@@ -1,46 +1,42 @@
-import { useEffect, useRef, useState } from "react";
-import { io, Socket } from "socket.io-client";
+import { useEffect, useState } from "react";
 
-const NEW_CHAT_MESSAGE_EVENT = "newMessage";
-const SOCKET_SERVER_URL = "http://localhost:3000";
+import { Message } from '../interfaces';
 
-export interface Message {
-  body: string;
-  userId: string;
-  currentUser: boolean;
-}
+import { socket } from '../services/socket';
+
+const JOIN_CHAT_EVENT = "chat:join";
+const LEAVE_CHAT_EVENT = "chat:leave";
+const NEW_CHAT_MESSAGE_EVENT = "chat:message";
 
 const useChat = (chatId: string) => {
-  const [messages, setMessages] = useState([]);
-  const socketRef = useRef<Socket>();
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    socketRef.current = io(SOCKET_SERVER_URL, {
-      query: { chatId },
-    });
-    
-    // Listens for incoming messages
-    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message: Message) => {
+    console.log('useChat:effect - joining and adding listener');
+    socket.emit(JOIN_CHAT_EVENT, chatId);
+
+    function onMessage(message: Message) {
       const incomingMessage = {
         ...message,
-        currentUser: message.userId === socketRef.current.id,
+        currentUser: message.userId === socket.id,
       };
       setMessages((messages) => [...messages, incomingMessage]);
-    });
+    }
+
+    socket.on(NEW_CHAT_MESSAGE_EVENT, onMessage);
     
-    // Destroys the socket reference
-    // when the connection is closed
     return () => {
-      socketRef.current.disconnect();
+      console.log('useChat:effect - leaving and removing listener');
+      socket.off(NEW_CHAT_MESSAGE_EVENT, onMessage);
+      socket.emit(LEAVE_CHAT_EVENT, chatId);
     };
   }, [chatId]);
 
-  // Sends a message to the server that
-  // forwards it to all users in the same room
   const sendMessage = (messageText: string) => {
-    socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
+    console.log('useEffect:sendMessage - sending message');
+    socket.emit(NEW_CHAT_MESSAGE_EVENT, chatId, {
       body: messageText,
-      senderId: socketRef.current.id,
+      senderId: socket.id,
     });
   };
 
