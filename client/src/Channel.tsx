@@ -9,7 +9,7 @@ export interface MatchParams {
 
 export default function Channel() {
   const match = useRouteMatch<MatchParams>('/:channel');
-  const channel = match?.params.channel ? match?.params.channel : 'Unknown';
+  const channel = match?.params.channel ? match?.params.channel : 'Unknown'; //TODO: this needs to be more robust
 
   const {messages, sendMessage} = useChat(channel);
   const [messageText, setMessageText] = useState('');
