@@ -1,17 +1,20 @@
 module.exports = (io) => {
   const joinChat = function (chatId) {
-    console.log(`joining ${chatId}`);
-    this.join(chatId);
+    const room = idToRoom(chatId)
+    console.log(`joining ${room}`);
+    this.join(room);
   };
   
   const leaveChat = function (chatId) {
-    console.log(`leaving ${chatId}`);
-    this.leave(chatId);
+    const room = idToRoom(chatId)
+    console.log(`leaving ${room}`);
+    this.leave(room);
   };
   
   const sendMessage = function (chatId, message) {
-    console.log(`messaging ${chatId}`)
-    io.in(chatId).emit('chat:message', message);
+    const room = idToRoom(chatId)
+    console.log(`messaging ${room}`)
+    io.in(room).emit('chat:message', message);
   };
 
   return {
@@ -21,7 +24,6 @@ module.exports = (io) => {
   }
 }
 
-function chatIdFromSocket(socket) {
-  const { chatId } = socket.handshake.query;
-  return chatId
+function idToRoom(chatId) {
+  return `channel:${chatId}`
 }
