@@ -1,11 +1,13 @@
-figure out what's needed to deploy
-* add firebase project
-* remove hard-coded SERVER_SOCKET_URL on client and PORT on server
-* remove blanket cors policy on server
+deploy
+* add heroku to website sub-domain
+* pare down package scripts to just what's needed
+* add env variables where appropriate (dev vs. prod)
+* add deploy instructions to README (git push heroku <local_branch>:main)
+* remove blanket cors policy on server. not needed now that they're on the same port
 * remove all debugging console logs
 
 add storage layer for persisting message history between client sessions
-* cloud firestore
+* mongodb
 
 add api call for message history (last 20?)
 
