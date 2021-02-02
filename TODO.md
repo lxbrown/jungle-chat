@@ -1,6 +1,11 @@
+figure out what's needed to deploy
+* add firebase project
+* remove hard-coded SERVER_SOCKET_URL on client and PORT on server
+* remove blanket cors policy on server
+* remove all debugging console logs
+
 add storage layer for persisting message history between client sessions
-  * prefer nosql
-  * compatible with firebase?
+* cloud firestore
 
 add api call for message history (last 20?)
 
@@ -14,11 +19,6 @@ allow "create a new room" from launch page
 
 add support for temporary user name (randomly assigned when entering room)
 
-figure out what's needed to deploy
-* add firebase project
-* remove hard-coded SERVER_SOCKET_URL on client and PORT on server
-* remove blanket cors policy on server
-* remove all debugging console logs
 
 allow authenticated users as well. user can choose their own name.
 
