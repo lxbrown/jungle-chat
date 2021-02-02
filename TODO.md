@@ -1,4 +1,5 @@
 deploy
+* configure SSL
 * add heroku to website sub-domain
 * pare down package scripts to just what's needed
 * add env variables where appropriate (dev vs. prod)
