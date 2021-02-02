@@ -8,7 +8,7 @@ const io = require('socket.io')(server, {
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
 const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 io.on('connection', (socket) => {
   console.log('connect');
