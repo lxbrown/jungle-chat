@@ -1,4 +1,8 @@
-const server = require('http').createServer();
+const path = require('path');
+const express = require('express');
+
+const app = express();
+const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
   cors: {
     origin: "*"
@@ -8,7 +12,7 @@ const io = require('socket.io')(server, {
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
 const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 io.on('connection', (socket) => {
   console.log('connect');
@@ -26,4 +30,15 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => { console.log('dc') });
 });
 
-server.listen(PORT);
+//Delegate all requests to react for routing
+const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
+app.use(express.static(UI_BUILD));
+
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(UI_BUILD, 'index.html'));
+});
+
+console.log('using ' + UI_BUILD);
+server.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`)
+});
