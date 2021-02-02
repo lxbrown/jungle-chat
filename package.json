@@ -5,7 +5,7 @@
     "node": "10.15.3"
   },
   "scripts": {
-    "build": "(cd client && npm build) && (cd ../server && npm install)",
+    "build": "(cd client && npm build) && (cd server && npm install)",
     "start": "cd server && yarn start"
   }
 }
