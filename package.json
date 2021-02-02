@@ -6,6 +6,6 @@
   },
   "scripts": {
     "build": "(cd client && npm build) && (cd server && npm install)",
-    "start": "cd server && yarn start"
+    "start": "cd server && npm start"
   }
 }
