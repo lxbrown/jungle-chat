@@ -1,5 +1,4 @@
 deploy
-* add deploy instructions to README (git push heroku <local_branch>:main)
 * remove all debugging console logs
 
 add storage layer for persisting message history between client sessions
@@ -27,3 +26,9 @@ add styling to launch
 add styling to message feed
 
 add styling to pre-set rooms
+
+
+Deploy instructions:
+* yarn add global heroku
+* heroku login
+* git push heroku <local_branch>:main
