@@ -1,7 +1,8 @@
-profanity filter when server processing message (tree words aren't allowed)
-
 add storage layer for persisting message history between client sessions
-* mongodb
+* research good DB structure for mongo and chat app
+* add channels collection
+* add messages collection
+* save new message to db on submit (use socketId as unique identifier)
 
 add api call for message history (last 20?)
 
@@ -9,8 +10,28 @@ create pre-set list of 2-3 themed rooms on launch page
 
 allow "create a new room" from launch page
 
-add support for temporary user name (randomly assigned when entering room)
+add support for temporary user name (randomly assigned)
+* anonymouse
+* KING OF THE JUNGLE
+* first:
+    * sprightly
+    * mongo
+    * tepid
+    * slowly
+    * dirty
+    * silly
+    * spongebob
+    * teeny tiny
+* second:
+    * monkey
+    * caterpiller
+    * bengal cat
+    * king kong
+    * godzilla
 
+profanity filter when server processing message (tree words aren't allowed)
+
+add "is typing..." event
 
 allow authenticated users as well. user can choose their own name.
 
