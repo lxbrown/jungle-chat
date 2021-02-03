@@ -1,10 +1,5 @@
 deploy
-* configure SSL
-* add heroku to website sub-domain
-* pare down package scripts to just what's needed
-* add env variables where appropriate (dev vs. prod)
 * add deploy instructions to README (git push heroku <local_branch>:main)
-* remove blanket cors policy on server. not needed now that they're on the same port
 * remove all debugging console logs
 
 add storage layer for persisting message history between client sessions
