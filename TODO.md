@@ -1,16 +1,11 @@
-deploy
-* remove all debugging console logs
+profanity filter when server processing message (tree words aren't allowed)
 
 add storage layer for persisting message history between client sessions
 * mongodb
 
 add api call for message history (last 20?)
 
-profanity filter when server processing message (tree words aren't allowed)
-
 create pre-set list of 2-3 themed rooms on launch page
-
-see # of active users in each room
 
 allow "create a new room" from launch page
 
