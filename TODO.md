@@ -1,5 +1,4 @@
 add storage layer for persisting message history between client sessions
-* remove mongo from server dependencies (only mongoose)
 * research good DB structure for mongo and chat app
 * add channels collection
 * add messages collection
