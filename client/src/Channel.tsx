@@ -8,19 +8,16 @@ export interface MatchParams {
 }
 
 export default function Channel() {
-  const match = useRouteMatch<MatchParams>('/:channel');
-  const channel = match?.params.channel ? match?.params.channel : 'Unknown'; //TODO: this needs to be more robust
+  const channel = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
 
   const {messages, sendMessage} = useChat(channel);
   const [messageText, setMessageText] = useState('');
 
   const handleOnMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('Channel:setting message text')
     setMessageText(event.target.value);
   }
 
   const handleSend = () => {
-    console.log('Channel:sending')
     sendMessage(messageText);
     setMessageText('');
   }

@@ -1,18 +1,25 @@
 const path = require('path');
-const express = require('express');
+require('dotenv').config();
 
+const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server, {
-  cors: {
-    origin: "*"
-  }
-});
+let io;
+if (process.env.NODE_ENV === 'production') {
+  io = require('socket.io')(server);
+}
+else {
+  io = require('socket.io')(server, {
+    cors: {
+      origin: 'http://localhost:3000'
+    }
+  });
+}
 
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
 const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 io.on('connection', (socket) => {
   console.log('connect');
