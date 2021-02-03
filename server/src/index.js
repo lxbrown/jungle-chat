@@ -34,10 +34,6 @@ io.on('connection', (socket) => {
 const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
 app.use(express.static(UI_BUILD));
 
-app.get('/.well-known/acme-challenge/:content', function(req, res) {
-  res.send('SsQPB8WZyBVbhzQG1qYbpfP8iBzInkeg5GCwnnwV-mg.ruue5-HIbyvmAveIF8RzrCtHVxOWiUIrtOQn803Ujkw')
-});
-
 app.get('*', (req,res) =>{
   res.sendFile(path.join(UI_BUILD, 'index.html'));
 });
