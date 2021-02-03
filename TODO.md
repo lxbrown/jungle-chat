@@ -1,7 +1,10 @@
-profanity filter when server processing message (tree words aren't allowed)
-
 add storage layer for persisting message history between client sessions
-* mongodb
+* get connection to mongo cloud up and running
+* remove mongo from server dependencies (only mongoose)
+* research good DB structure for mongo and chat app
+* add channels collection
+* add messages collection
+* save new message to db on submit (use socketId as unique identifier)
 
 add api call for message history (last 20?)
 
@@ -27,6 +30,8 @@ add support for temporary user name (randomly assigned)
     * bengal cat
     * king kong
     * godzilla
+
+profanity filter when server processing message (tree words aren't allowed)
 
 add "is typing..." event
 
