@@ -12,7 +12,7 @@ const io = require('socket.io')(server, {
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
 const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 io.on('connection', (socket) => {
   console.log('connect');
@@ -33,6 +33,10 @@ io.on('connection', (socket) => {
 //Delegate all requests to react for routing
 const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
 app.use(express.static(UI_BUILD));
+
+app.get('/.well-known/acme-challenge/:content', function(req, res) {
+  res.send('SsQPB8WZyBVbhzQG1qYbpfP8iBzInkeg5GCwnnwV-mg.ruue5-HIbyvmAveIF8RzrCtHVxOWiUIrtOQn803Ujkw')
+});
 
 app.get('*', (req,res) =>{
   res.sendFile(path.join(UI_BUILD, 'index.html'));
