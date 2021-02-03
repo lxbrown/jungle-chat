@@ -9,8 +9,26 @@ create pre-set list of 2-3 themed rooms on launch page
 
 allow "create a new room" from launch page
 
-add support for temporary user name (randomly assigned when entering room)
+add support for temporary user name (randomly assigned)
+* anonymouse
+* KING OF THE JUNGLE
+* first:
+    * sprightly
+    * mongo
+    * tepid
+    * slowly
+    * dirty
+    * silly
+    * spongebob
+    * teeny tiny
+* second:
+    * monkey
+    * caterpiller
+    * bengal cat
+    * king kong
+    * godzilla
 
+add "is typing..." event
 
 allow authenticated users as well. user can choose their own name.
 

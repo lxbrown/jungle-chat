@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
+const mongoose = require('mongoose');
 let io;
 if (process.env.NODE_ENV === 'production') {
   io = require('socket.io')(server);
@@ -15,6 +16,11 @@ else {
     }
   });
 }
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/jungle-chat', {
+  useNewUrlParser: true
+});
+console.log(mongoose);
 
 const { joinChat, leaveChat, sendMessage } = require('./chatHandler')(io);
 const { joinLaunch, leaveLaunch, refreshChannels } = require('./channelHandler')(io);
