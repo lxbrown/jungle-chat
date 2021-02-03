@@ -1,12 +1,11 @@
 require('dotenv').config();
 
-
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(MONGODB_URI_WITHOUT_AUTH, {
+const client = new MongoClient(process.env.MONGODB_URI_WITHOUT_AUTH, {
   useNewUrlParser: true,
   auth: {
-    user: MONGO_USERNAME,
-    pass: MONGO_PASSWORD
+    user: process.env.MONGO_USERNAME,
+    pass: process.env.MONGO_PASSWORD
   }
 });
 client.connect(err => {
