@@ -1,8 +1,4 @@
-add storage layer for persisting message history between client sessions
-* research good DB structure for mongo and chat app
-* add channels collection
-* add messages collection
-* save new message to db on submit (use socketId as unique identifier)
+create channel package with handler, model, and schema
 
 add api call for message history (last 20?)
 
