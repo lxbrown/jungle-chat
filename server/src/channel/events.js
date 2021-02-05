@@ -1,26 +1,26 @@
-module.exports = (io) => {
+module.exports = (io, socket) => {
   const ROOM = 'home:launch'
   const CHANNEL_PREFIX = 'channel:';
 
-  const joinLaunch = function () {
+  const joinLaunch = () => {
     console.log(`joining ${ROOM} and asking for channels`);
-    this.join(ROOM);
+    socket.join(ROOM);
     refreshChannels();
   };
   
-  const leaveLaunch = function () {
+  const leaveLaunch = () => {
     console.log(`leaving ${ROOM}`);
-    this.leave(ROOM);
+    socket.leave(ROOM);
   };
   
-  const refreshChannels = function () { //TODO: only refresh if > 1 in home:launch room
-    const room = io.sockets.adapter.rooms[ROOM]
+  const refreshChannels = () => {
+    const room = io.sockets.adapter.rooms[ROOM];
     if (room && room.size == 0) {
       return;
     }
     console.log(`updating ${ROOM}`);
     let channels = []
-    io.sockets.adapter.rooms.forEach((value, key, map) => {
+    io.sockets.adapter.rooms.forEach((value, key) => {
       if (!key.startsWith(CHANNEL_PREFIX)) {
         return
       }
@@ -30,13 +30,17 @@ module.exports = (io) => {
         name: chatId,
         activeUsers: value.size
       })
-    })
+    });
     io.in(ROOM).emit('launch:update', channels);
   };
+  
+  socket.on('launch:join', joinLaunch);
+  socket.on('launch:leave', leaveLaunch);
+  
+  socket.on('chat:join', refreshChannels);
+  socket.on('chat:leave', refreshChannels);
 
-  return {
-    joinLaunch,
-    leaveLaunch,
-    refreshChannels
-  }
+  socket.on('disconnect', refreshChannels);
+
+  return;
 }

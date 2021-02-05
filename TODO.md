@@ -1,12 +1,10 @@
-create channel package with handler, model, and schema
+consistent tabbing on files
 
-add api call for message history (last 20?)
+create channels
+* pre-set list of 2-3 channels
+* only persist messages from known channels
 
-create pre-set list of 2-3 themed rooms on launch page
-
-allow "create a new room" from launch page
-
-add support for temporary user name (randomly assigned)
+add temporary user names (randomly assigned)
 * anonymouse
 * KING OF THE JUNGLE
 * first:
@@ -35,20 +33,30 @@ allow authenticated users. user can choose their own name.
 
 add styling to launch
 * Join a room
-  * horizontal list of persistent channels, centered on page
-  * border with border radius
-  * red shadow if active
-  * number of users next to name if active
-  * tree svgs on left and right edges
+  * horizontal list of persistent channels, centered on page. each channel has:
+    * border with border radius
+    * red shadow if active
+    * number of users next to name if active
 * or
 * Make a temporary room
-* [text box]
-* {Join}
+  * [text box] {Start}
+  * horizontal list of persistent channels, centered on page. each channel has:
+    * border with border radius
+    * red shadow if active
+    * number of users next to name if active
 
 add styling to message feed
+* text box is fixed near bottom
+* send button to the right of text box
+* feed is above, and is scrollable
+* user messages appear on right, others on left
+* display name is shown
+* Enter == Send
 
-
-add styling to pre-set rooms
+add theming
+* tree svgs on left and right edges of launch
+* temporary rooms keep launch svgs
+* each room has different svgs
 
 
 Deploy instructions:

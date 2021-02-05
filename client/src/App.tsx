@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Launch from './Launch';
-import Channel from './Channel';
+import Launch from './launch/Launch';
+import Chat from './chat/Chat';
 
 import './App.css';
 
@@ -13,7 +13,7 @@ export default function App() {
           <Launch />
         </Route>
         <Route exact path="/:channel">
-          <Channel />
+          <Chat />
         </Route>
       </Switch>
     </Router>
