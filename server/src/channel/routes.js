@@ -1,10 +1,24 @@
 const express = require('express');
 
+const interactions = require('./interactions')();
+
 const Routes = () => {
   const router = express.Router();
-  router.route('').get((req, res) =>{
-    res.json({'hi':'all channels'})
-  });
+  router.route('').get((req, res, next) => {
+    interactions.getAll().then(channels => {
+      res.json(channels);
+    }, err => {
+      next(err)
+    });
+  })
+  router.route('').post((req, res, next) => {
+    const { short_name, display_name, description, persistent } = req.body;
+    interactions.createChannel(short_name, display_name, description, persistent).then(channel => {
+      res.json(channel);
+    }, err => {
+      next(err)
+    });
+  })
 
   return router;
 }

@@ -3,6 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const http = require('http');
+const bodyParser = require('body-parser');
 const socketio = require('socket.io');
 
 const routes = require('./src/routes');
@@ -19,6 +20,7 @@ app.use(express.static(UI_BUILD));
 
 //Set up socket and API routing
 registerSocketEvents(io);
+app.use(bodyParser.json());
 app.use('/api', routes());
 
 //Forward all other paths to client for routing
