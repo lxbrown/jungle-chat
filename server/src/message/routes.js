@@ -1,17 +1,13 @@
 const express = require('express');
 
+const Repository = require('./repository');
+const Controller = require('./controller');
+
 const Routes = () => {
+    const controller = Controller(Repository());
+
     const router = express.Router();
-    router.route('/channel/:channel').get((req, res) =>{
-        res.json({'hi': `get last XXX messages from ${req.params.channel}`})
-        // Message.find({
-        //   channel_id: req.params.channel
-        // }).
-        // limit(10).
-        // sort('+created_at'), (err, messages) => {
-        //   res.json(messages);
-        // };
-    });
+    router.route('/channel/:channel').get(controller.getByChannel);
 
     return router;
 }
