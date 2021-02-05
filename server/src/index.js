@@ -12,12 +12,13 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, { cors: process.env.CORS_ORIGIN});
 
-const dbConn = require('./connections/dbConnection');
+const dbConn = require('./db');
 
 //Serve static files from client build
 const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
 app.use(express.static(UI_BUILD));
 
+//Set up socket and API routing
 registerSocketEvents(io);
 app.use('/api', routes());
 
