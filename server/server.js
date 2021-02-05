@@ -11,7 +11,7 @@ const dbConn = require('./src/db');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server, { cors: process.env.CORS_ORIGIN});
+const io = socketio(server);
 
 //Serve static files from client build
 const UI_BUILD = path.join(__dirname, '..', 'client', 'build');
