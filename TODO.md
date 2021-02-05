@@ -27,6 +27,8 @@ profanity filter when server processing message (tree words aren't allowed)
 
 add "is typing..." event
 
+rate limiter on new messages
+
 allow authenticated users. user can choose their own name.
 
 ---
