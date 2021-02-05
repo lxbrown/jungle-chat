@@ -29,13 +29,24 @@ profanity filter when server processing message (tree words aren't allowed)
 
 add "is typing..." event
 
-allow authenticated users as well. user can choose their own name.
+allow authenticated users. user can choose their own name.
 
 ---
 
 add styling to launch
+* Join a room
+  * horizontal list of persistent channels, centered on page
+  * border with border radius
+  * red shadow if active
+  * number of users next to name if active
+  * tree svgs on left and right edges
+* or
+* Make a temporary room
+* [text box]
+* {Join}
 
 add styling to message feed
+
 
 add styling to pre-set rooms
 
