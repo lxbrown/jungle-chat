@@ -1,5 +1,3 @@
-consistent tabbing on files
-
 create channels
 * pre-set list of 2-3 channels
 * only persist messages from known channels
