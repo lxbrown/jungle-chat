@@ -1,4 +1,4 @@
-const Message = require('./db/model');
+const interactions = require('./interactions')();
 
 module.exports = (io, socket) => {
   const joinChat = chatId => { 
@@ -17,19 +17,11 @@ module.exports = (io, socket) => {
     const room = idToRoom(chatId);
     console.log(`messaging ${room}`);
 
-    const message = new Message({
-      socket_id: newMessage.senderId,
-      channel_id: chatId,
-      display_name: 'TODO',
-      message_body: newMessage.body
-    });
-    
-    message.save((err) => {
-      if (err) {
-        console.log(err);
-      }
-
+    interactions.sendMessage(newMessage.senderId, 'TODO', chatId, newMessage.body).then(() => {
       io.in(room).emit('chat:message', newMessage);
+    }, err => {
+      //TODO: write to internal log and notify user of failure
+      console.log(err);
     });
   };
   
