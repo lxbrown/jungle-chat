@@ -1,19 +1,19 @@
 const Message = require('./db/model');
 
-module.exports = (io) => {
-  const joinChat = function (chatId) { 
+module.exports = (io, socket) => {
+  const joinChat = chatId => { 
     const room = idToRoom(chatId)
     console.log(`joining ${room}`);
-    this.join(room);
+    socket.join(room);
   };
   
-  const leaveChat = function (chatId) {
+  const leaveChat = chatId => {
     const room = idToRoom(chatId)
     console.log(`leaving ${room}`);
-    this.leave(room);
+    socket.leave(room);
   };
   
-  const sendMessage = function (chatId, newMessage) {
+  const sendMessage = (chatId, newMessage) => {
     const room = idToRoom(chatId);
     console.log(`messaging ${room}`);
 
@@ -31,14 +31,13 @@ module.exports = (io) => {
 
       io.in(room).emit('chat:message', newMessage);
     });
-
   };
+  
+  socket.on('chat:join', joinChat);
+  socket.on('chat:message', sendMessage);
+  socket.on('chat:leave', leaveChat);
 
-  return {
-    joinChat,
-    leaveChat,
-    sendMessage
-  }
+  return;
 }
 
 function idToRoom(chatId) {
