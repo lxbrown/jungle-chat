@@ -1,25 +1,29 @@
 create channels
+* why is it letting me create more than one with the same short_name?
 * pre-set list of 2-3 channels
+* remove api to add a channel
 * only persist messages from known channels
 
 add temporary user names (randomly assigned)
-* anonymouse
+* Anonymouse
 * KING OF THE JUNGLE
 * first:
-    * sprightly
-    * mongo
-    * tepid
-    * slowly
-    * dirty
-    * silly
-    * spongebob
-    * teeny tiny
+    * Sprightly
+    * Mongo
+    * Tepid
+    * Slowly
+    * Dirty
+    * Silly
+    * Spongebob
+    * Teeny tiny
 * second:
-    * monkey
-    * caterpiller
-    * bengal cat
-    * king kong
-    * godzilla
+    * Monkey
+    * Caterpiller
+    * Bengal Cat
+    * Tarzan
+    * The Rock
+    * King Kong
+    * Godzilla
 
 profanity filter when server processing message (tree words aren't allowed)
 
