@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dbConn = mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
   auth: {
     user: process.env.MONGO_USERNAME,
     password: process.env.MONGO_PASSWORD
