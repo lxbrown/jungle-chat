@@ -10,20 +10,19 @@ const dbConn = mongoose.connect(process.env.MONGODB_URI, {
 });
 
 mongoose.connection.on('connected', function () {
-  console.log('connected to db');
+  console.log('database connection established');
 });
 
 mongoose.connection.on('error',function (err) { 
-  console.log(`DB connection error ${err}`);
+  console.log(`database connection error ${err}`);
 }); 
 
 mongoose.connection.on('disconnected', function () { 
-  console.log('disconnected from db'); 
+  console.log('database connection ended'); 
 });
 
 process.on('SIGINT', function() {   
   mongoose.connection.close(function () { 
-    console.log('Mongoose default connection disconnected through app termination');
     process.exit(0); 
   }); 
 });

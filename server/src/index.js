@@ -12,7 +12,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, { cors: process.env.CORS_ORIGIN});
 
-// const dbConn = require('./connections/dbConnection');
+const dbConn = require('./connections/dbConnection');
 
 //Serve static files from client build
 const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
@@ -26,9 +26,9 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(UI_BUILD, 'index.html'));
 });
 
-// dbConn.then(() => {
+dbConn.then(() => {
   const PORT = process.env.PORT || 4000
   server.listen(PORT, () => {
     console.log(`listening on port ${PORT}`)
   });
-// });
+});
