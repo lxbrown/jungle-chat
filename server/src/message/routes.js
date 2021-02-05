@@ -1,11 +1,11 @@
 const express = require('express');
 
-const repository = require('./repository')();
+const interactions = require('./interactions')();
 
 const Routes = () => {
     const router = express.Router();
     router.route('/channel/:channel').get((req, res, next) => {
-        repository.getByChannel(req.params.channel, 20).then(messages => {
+        interactions.getByChannel(req.params.channel, 20).then(messages => {
             res.json(messages);
         }, err => {
             next(err)
