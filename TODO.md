@@ -1,6 +1,6 @@
-create channel package with handler, model, and schema
-
 add api call for message history (last 20?)
+
+Consistent tabbing on files
 
 create pre-set list of 2-3 themed rooms on launch page
 

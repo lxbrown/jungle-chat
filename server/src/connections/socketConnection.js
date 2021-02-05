@@ -12,8 +12,8 @@ module.exports = (server) => {
     
     const io = socketio(server, socketConfig)
 
-    const { joinChat, leaveChat, sendMessage } = require('../socketHandlers/chatHandler')(io);
-    const { joinLaunch, leaveLaunch, refreshChannels } = require('../socketHandlers/channelHandler')(io);
+    const { joinChat, leaveChat, sendMessage } = require('../message/events')(io);
+    const { joinLaunch, leaveLaunch, refreshChannels } = require('../channel/events')(io);
 
     io.on('connection', (socket) => {
         console.log('connect');

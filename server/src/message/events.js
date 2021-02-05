@@ -1,7 +1,7 @@
-const Message = require('../models/message');
+const Message = require('./db/model');
 
 module.exports = (io) => {
-  const joinChat = function (chatId) {
+  const joinChat = function (chatId) { 
     const room = idToRoom(chatId)
     console.log(`joining ${room}`);
     this.join(room);
