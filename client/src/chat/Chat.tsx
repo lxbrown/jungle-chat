@@ -28,8 +28,8 @@ export default function Chat() {
       <div className="message-container">
         <ol className="messages">
           {messages.map((message, i) => (
-            <li key={i} className={`message-item ${message.currentUser ? "sent-message" : "received-message"}`}>
-              {message.body}
+            <li key={i} className={`message-item ${message.current_user ? "sent-message" : "received-message"}`}>
+              {message.message_body}
             </li>
           ))}
         </ol>

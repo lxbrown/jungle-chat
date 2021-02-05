@@ -1,7 +1,12 @@
 export interface Message {
-    body: string;
-    userId: string;
-    currentUser: boolean;
+    message_body: string;
+    socket_id: string;
+    created_at: Date;
+    current_user: boolean;
+}
+
+export interface NewMessage {
+    message_body: string;
 }
 
 export interface Channel {

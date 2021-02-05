@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
-import { Message } from '../../interfaces';
+import { Message, NewMessage } from '../../interfaces';
 
 import { socket } from '../../services/socket';
 
@@ -14,14 +15,17 @@ const useChat = (chatId: string) => {
   useEffect(() => {
     socket.emit(JOIN_CHAT_EVENT, chatId);
 
-    function onMessage(message: Message) {
-      const incomingMessage = {
-        ...message,
-        currentUser: message.userId === socket.id,
-      };
-      setMessages((messages) => [...messages, incomingMessage]);
+    function getHistory() {
+      axios.get(`/api/message/channel/${chatId}`).then((res) => {
+        setMessages(res.data.reverse());
+      })
     }
 
+    function onMessage(message: Message) {
+      setMessages((messages) => [...messages, message]);
+    };
+
+    getHistory();
     socket.on(NEW_CHAT_MESSAGE_EVENT, onMessage);
     
     return () => {
@@ -31,10 +35,10 @@ const useChat = (chatId: string) => {
   }, [chatId]);
 
   const sendMessage = (messageText: string) => {
-    socket.emit(NEW_CHAT_MESSAGE_EVENT, chatId, {
-      body: messageText,
-      senderId: socket.id,
-    });
+    const new_message: NewMessage = {
+      message_body: messageText
+    }
+    socket.emit(NEW_CHAT_MESSAGE_EVENT, chatId, new_message);
   };
 
   return { messages, sendMessage };

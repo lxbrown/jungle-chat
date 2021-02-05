@@ -6,7 +6,7 @@ module.exports = () => {
             if (socket_id === undefined || channel_id === undefined) {
                 reject(new Error('Message validation failed'));
             }
-            
+
             const message = new model({
                 socket_id: socket_id,
                 channel_id: channel_id,
