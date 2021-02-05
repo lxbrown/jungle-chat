@@ -7,7 +7,7 @@ export interface MatchParams {
   channel: string;
 }
 
-export default function Channel() {
+export default function Chat() {
   const channel = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
 
   const {messages, sendMessage} = useChat(channel);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Message } from '../interfaces';
+import { Message } from '../../interfaces';
 
-import { socket } from '../services/socket';
+import { socket } from '../../services/socket';
 
 const JOIN_CHAT_EVENT = "chat:join";
 const LEAVE_CHAT_EVENT = "chat:leave";

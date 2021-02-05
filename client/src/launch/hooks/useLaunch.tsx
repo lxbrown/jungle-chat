@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Channel } from '../interfaces';
+import { Channel } from '../../interfaces';
 
-import { socket } from '../services/socket';
+import { socket } from '../../services/socket';
 
 const JOIN_LAUNCH_EVENT = "launch:join";
 const LEAVE_LAUNCH_EVENT = "launch:leave";

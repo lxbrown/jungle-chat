@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useLaunch from './hooks/useLaunch';
-import { Channel } from './interfaces';
+import { Channel } from '../interfaces';
 
 export default function Launch() {
   const {channels} = useLaunch();
