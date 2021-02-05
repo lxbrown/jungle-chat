@@ -7,12 +7,11 @@ const socketio = require('socket.io');
 
 const routes = require('./src/routes');
 const registerSocketEvents = require('./src/events');
+const dbConn = require('./src/db');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, { cors: process.env.CORS_ORIGIN});
-
-const dbConn = require('./src/db');
 
 //Serve static files from client build
 const UI_BUILD = path.join(__dirname, '..', '..', 'client', 'build');
