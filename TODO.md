@@ -1,6 +1,4 @@
 create channels
-* why is it letting me create more than one with the same short_name?
-* pre-set list of 2-3 channels
 * remove api to add a channel
 * only persist messages from known channels
 

@@ -12,7 +12,7 @@ module.exports = () => {
         display_name: display_name,
         description: description,
         persistent: persistent
-      })
+      });
 
       model(channel).save((err) => {
         if (err) {

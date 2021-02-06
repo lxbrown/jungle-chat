@@ -8,7 +8,7 @@ const Routes = () => {
     interactions.getAll().then(channels => {
       res.json(channels);
     }, err => {
-      next(err)
+      res.json(err);
     });
   })
   router.route('').post((req, res, next) => {
@@ -16,7 +16,7 @@ const Routes = () => {
     interactions.createChannel(short_name, display_name, description, persistent).then(channel => {
       res.json(channel);
     }, err => {
-      next(err)
+      res.json(err);
     });
   })
 
