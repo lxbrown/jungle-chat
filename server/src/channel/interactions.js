@@ -3,15 +3,14 @@ const model = require('./db/model');
 module.exports = () => {
   const createChannel = (short_name, display_name, description, persistent) => {
     return new Promise((resolve, reject) => {
-      if (short_name === undefined || persistent === undefined) {
+      if (short_name === undefined || short_name === '') {
         reject(new Error('Message validation failed'));
       }
 
       const channel = new model({
-        short_name: short_name,
+        short_name: encodeURI(short_name),
         display_name: display_name,
-        description: description,
-        persistent: persistent
+        description: description
       });
 
       model(channel).save((err) => {

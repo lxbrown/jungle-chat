@@ -1,5 +1,3 @@
-validation on channel (url encode short_name)
-
 add styling to launch
 * Join a room
   * horizontal list of persistent channels, centered on page. each channel has:
