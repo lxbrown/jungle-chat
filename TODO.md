@@ -1,7 +1,3 @@
-create channels
-* remove api to add a channel
-* only persist messages from known channels
-
 add temporary user names (randomly assigned)
 * Anonymouse
 * KING OF THE JUNGLE

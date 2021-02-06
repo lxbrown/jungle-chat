@@ -26,17 +26,32 @@ module.exports = () => {
   const getAll = () => {
     return new Promise((resolve, reject) => {
       model.find({}).
-        exec((err, messages) => {
+        lean().
+        exec((err, channels) => {
           if (err) {
             reject(err);
           }
-          resolve(messages);
+          resolve(channels);
+        });
+    })
+  };
+
+  const getByShortName = (short_name) => {
+    return new Promise((resolve, reject) => {
+      model.findOne({short_name: short_name}).
+        lean().
+        exec((err, channel) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(channel);
         });
     })
   };
 
   return {
     createChannel,
-    getAll
+    getAll,
+    getByShortName
   }
 }

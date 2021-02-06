@@ -10,7 +10,7 @@ const Routes = () => {
     }, err => {
       res.json(err);
     });
-  })
+  });
   // Disabling the ability to create channels via an HTTP request. For
   // now, those can only be created internally.
   // router.route('').post((req, res, next) => {
