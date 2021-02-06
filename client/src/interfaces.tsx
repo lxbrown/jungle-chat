@@ -9,8 +9,13 @@ export interface NewMessage {
   message_body: string;
 }
 
-export interface Channel {
-  id: string;
-  name: string;
-  activeUsers: number;
+export interface PersistentChannel {
+  short_name: string;
+  display_name: string;
+  description: string;
+}
+
+export interface ChannelFeed {
+  short_name: string;
+  active_users: number;
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-import { Channel } from '../../interfaces';
+import { ChannelFeed } from "../../interfaces";
 
 import { socket } from '../../services/socket';
 
@@ -9,13 +8,13 @@ const LEAVE_LAUNCH_EVENT = "launch:leave";
 const CHANNEL_UPDATE_EVENT = "launch:update";
 
 const useLaunch = () => {
-  const [channels, setChannels] = useState<Channel[]>([]);
+  const [channelFeed, setChannelFeed] = useState<ChannelFeed[]>([]);
 
   useEffect(() => {
     socket.emit(JOIN_LAUNCH_EVENT);
 
-    socket.on(CHANNEL_UPDATE_EVENT, (allChannels: Channel[]) => {
-      setChannels(allChannels);
+    socket.on(CHANNEL_UPDATE_EVENT, (allChannels: ChannelFeed[]) => {
+      setChannelFeed(allChannels);
     });
     
     return () => {
@@ -23,7 +22,7 @@ const useLaunch = () => {
     };
   }, []);
 
-  return { channels };
+  return { channelFeed };
 };
 
 export default useLaunch;

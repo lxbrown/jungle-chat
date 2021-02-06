@@ -26,9 +26,8 @@ module.exports = (io, socket) => {
       }
       const chatId = key.replace(CHANNEL_PREFIX, '');
       channels.push(channel = {
-        id: chatId,
-        name: chatId,
-        activeUsers: value.size
+        short_name: chatId,
+        active_users: value.size
       })
     });
     io.in(ROOM).emit('launch:update', channels);

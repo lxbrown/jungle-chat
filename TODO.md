@@ -1,4 +1,7 @@
 add styling to launch
+
+center everything
+set max width
 * Join a room
   * horizontal list of persistent channels, centered on page. each channel has:
     * border with border radius
