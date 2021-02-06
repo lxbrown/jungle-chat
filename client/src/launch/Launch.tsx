@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 
+import Card from 'react-bootstrap/Card';
+
 import useLaunch from './hooks/useLaunch';
 import { ChannelFeed, PersistentChannel} from '../interfaces';
 
@@ -10,11 +12,23 @@ function Room(props: any) {
   const feed: ChannelFeed = props.feed;
 
   return (
-    <div className="room-blob">
-      <Link to={`/${channel.short_name}`} className="join-link">
-        {channel.display_name} {feed ? feed.active_users : 0}
-      </Link>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the bulk of
+          the card's content.
+        </Card.Text>
+        <Card.Link href="#">Card Link</Card.Link>
+        <Card.Link href="#">Another Link</Card.Link>
+      </Card.Body>
+    </Card>
+    // <div className="room-blob">
+    //   <Link to={`/${channel.short_name}`} className="join-link">
+    //     {channel.display_name} {feed ? feed.active_users : 0}
+    //   </Link>
+    // </div>
   )
 }
 
