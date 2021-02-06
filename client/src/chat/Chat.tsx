@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
 import useChat from './hooks/useChat';
- 
+
 export interface MatchParams {
   channel: string;
 }
@@ -10,7 +10,7 @@ export interface MatchParams {
 export default function Chat() {
   const channel = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
 
-  const {messages, sendMessage} = useChat(channel);
+  const { messages, sendMessage, username } = useChat(channel);
   const [messageText, setMessageText] = useState('');
 
   const handleOnMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +25,7 @@ export default function Chat() {
   return (
     <div className="channel-container">
       <h3>{channel}</h3>
+      <h5>You are {username}</h5>
       <div className="message-container">
         <ol className="messages">
           {messages.map((message, i) => (

@@ -1,33 +1,4 @@
-add temporary user names (randomly assigned)
-* Anonymouse
-* KING OF THE JUNGLE
-* first:
-    * Sprightly
-    * Mongo
-    * Tepid
-    * Slowly
-    * Dirty
-    * Silly
-    * Spongebob
-    * Teeny tiny
-* second:
-    * Monkey
-    * Caterpiller
-    * Bengal Cat
-    * Tarzan
-    * The Rock
-    * King Kong
-    * Godzilla
-
-profanity filter when server processing message (tree words aren't allowed)
-
-add "is typing..." event
-
-rate limiter on new messages
-
-allow authenticated users. user can choose their own name.
-
----
+validation on channel (url encode short_name)
 
 add styling to launch
 * Join a room
@@ -51,13 +22,18 @@ add styling to message feed
 * display name is shown
 * Enter == Send
 
+see who else is in the channel (list of active users)
+
 add theming
 * tree svgs on left and right edges of launch
 * temporary rooms keep launch svgs
 * each room has different svgs
 
+profanity filter when server processing message (tree words aren't allowed)
 
-Deploy instructions:
-* yarn add global heroku
-* heroku login
-* git push heroku <local_branch>:main
+add "is typing..." event
+
+rate limiter on new messages
+
+allow authenticated users. user can choose their own name.
+

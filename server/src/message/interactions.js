@@ -39,15 +39,15 @@ module.exports = () => {
       model.find({
         channel_id: channel
       }).
-        limit(limit).
-        sort('-_id').
-        exec((err, messages) => {
-          if (err) {
-            reject(err);
-          }
-          resolve(messages);
-        });
-    })
+      limit(limit).
+      sort('-_id').
+      exec((err, messages) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(messages);
+      });
+    });
   };
 
   return {
