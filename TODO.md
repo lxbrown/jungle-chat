@@ -12,6 +12,8 @@ add styling to message feed
 * display name is shown
 * Enter == Send
 
+ensure mobile is fully supported
+
 don't url encode on persistence, only on access (building a path)
 
 see who else is in the channel (list of active users)
