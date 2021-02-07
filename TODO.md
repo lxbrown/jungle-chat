@@ -1,19 +1,8 @@
 add styling to launch
-
-center everything
-set max width
-* Join a room
-  * horizontal list of persistent channels, centered on page. each channel has:
-    * border with border radius
-    * red shadow if active
-    * number of users next to name if active
-* or
-* Make a temporary room
-  * [text box] {Start}
-  * horizontal list of persistent channels, centered on page. each channel has:
-    * border with border radius
-    * red shadow if active
-    * number of users next to name if active
+* center everything
+* move Start textbox below
+* style Start as a button
+* url encode temp chats
 
 add styling to message feed
 * text box is fixed near bottom
@@ -22,6 +11,8 @@ add styling to message feed
 * user messages appear on right, others on left
 * display name is shown
 * Enter == Send
+
+don't url encode on persistence, only on access (building a path)
 
 see who else is in the channel (list of active users)
 

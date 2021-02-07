@@ -1,34 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-
 import Card from 'react-bootstrap/Card';
 
 import useLaunch from './hooks/useLaunch';
 import { ChannelFeed, PersistentChannel} from '../interfaces';
 
+import './Launch.css';
+
 function Room(props: any) {
   const channel: PersistentChannel = props.channel;
   const feed: ChannelFeed = props.feed;
 
+  const name = channel ? channel.display_name : feed.short_name;
+  const numUsers = feed ? feed.active_users : 0;
+  const path = channel ? channel.short_name : feed.short_name;
+
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content.
-        </Card.Text>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
-    // <div className="room-blob">
-    //   <Link to={`/${channel.short_name}`} className="join-link">
-    //     {channel.display_name} {feed ? feed.active_users : 0}
-    //   </Link>
-    // </div>
+    <Link to={`/${path}`} className="room-card">
+      <Card>
+        <div className={`card-content ${ numUsers > 0 ? 'active' : '' }`}>
+          <Card.Text className="h6">{name}</Card.Text>
+          <span className="hint">{numUsers} active</span>
+        </div>
+      </Card>
+    </Link>
   )
 }
 
@@ -54,16 +50,25 @@ export default function Launch() {
   return (
     <div className="container">
       <h3>Join a room</h3>
-      <div className="channel-list-container">
-        <ul className="rooms">
+      <p className="hint">These ones stick around</p>
+      <div className="rooms">
           {(channels.map((channel: PersistentChannel, i) => (
             <Room channel={channel} feed={channelFeed.find(feed => channel.short_name === feed.short_name)} key={i}/>
           )))}
-        </ul>
       </div>
-      <input type="text" placeholder="Channel" value={tempChannel} onChange={handleOnInputChange} className="channel-input" />
+      <p>or</p>
+      <h4>Use a temporary room</h4>
+      <p className="hint">These ones disappear</p>
+      <div className="rooms">
+        {channelFeed.map((feed: ChannelFeed, i) => !channels.find(channel => channel.short_name === feed.short_name) ? 
+        (<Room feed={feed} key={i}/>) : <p/>
+        )}
+      </div>
+      {/* display temporary rooms that are active. Will need to URL decode them */}
+      <input type="text" placeholder="Create a new room" value={tempChannel} onChange={handleOnInputChange} />
       <Link to={`/${tempChannel}`} className="join-link">
-        Join channel
+        {/* TODO: style as a button, URL encode the channel name */}
+        Start
       </Link>
     </div>
   )
