@@ -8,7 +8,7 @@ const Routes = () => {
     interactions.getByChannel(req.params.channel, 20).then(messages => {
       res.json(messages);
     }, err => {
-      next(err)
+      res.json(err);
     });
   });
 

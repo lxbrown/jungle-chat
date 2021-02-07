@@ -1,0 +1,36 @@
+.container {
+  text-align: center;
+}
+
+.rooms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.room-card {
+  margin: 1rem;
+  color: inherit;
+  text-decoration: inherit;
+  width: 9rem;
+  text-align: center;
+}
+
+.active {
+  box-shadow: 0 0 5px red;
+}
+
+.room-card:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.hint {
+  color:grey;
+}
+
+.card-content {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: .75rem;
+}

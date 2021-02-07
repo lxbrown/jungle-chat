@@ -1,7 +1,7 @@
 const interactions = require('./interactions')();
 
 module.exports = (io, socket) => {
-  const joinChat = chatId => { 
+    const joinChat = chatId => {
     const room = idToRoom(chatId)
     console.log(`joining ${room}`);
     socket.join(room);
