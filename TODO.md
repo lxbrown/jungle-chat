@@ -3,7 +3,6 @@ add styling to launch
 * add a title at the top
 * move Start textbox below
 * style Start as a button
-* url encode temp chats
 
 add styling to message feed
 * text box is fixed near bottom
