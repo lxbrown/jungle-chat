@@ -1,5 +1,6 @@
 add styling to launch
-* center everything
+* center room stuff on the page
+* add a title at the top
 * move Start textbox below
 * style Start as a button
 * url encode temp chats

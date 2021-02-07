@@ -8,7 +8,7 @@ const first = [
   'Silly',
   'Teeny Tiny',
   'Big Bad'
-]
+];
 const last = [
   'Monkey',
   'Caterpiller',
@@ -17,13 +17,14 @@ const last = [
   'The Rock',
   'King Kong',
   'Godzilla',
-  'Spongebob'
+  'Spongebob',
+  'T-Rex'
 ];
 
 let permutations = {
   'Anonymouse': true,
   'KING OF THE JUNGLE': true
-}
+};
 
 for (const a of first) {
   for (const b of last) {
