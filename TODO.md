@@ -1,7 +1,3 @@
-add sort index on created_at
-
-save display name with each message
-
 add styling to launch
 * center room stuff on the page
 * add a title at the top
