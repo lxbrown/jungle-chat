@@ -1,6 +1,7 @@
 export interface Message {
   message_body: string;
   socket_id: string;
+  display_name: string;
   created_at: Date;
   current_user: boolean;
 }

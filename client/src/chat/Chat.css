@@ -11,3 +11,27 @@
 .message-container {
   margin-bottom: 3rem;
 }
+
+.message-item {
+  list-style-type: none;
+}
+
+.sent-message {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.received-message {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.username {
+  display: block;
+  font-weight: bold;
+}
+
+.message-body {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+}

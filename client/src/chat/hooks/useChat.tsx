@@ -25,6 +25,9 @@ const useChat = (chatId: string) => {
     }
 
     function onMessage(message: Message) {
+      if (message.socket_id === socket.id) {
+        message.current_user = true;
+      }
       setMessages((messages) => [...messages, message]);
     };
 

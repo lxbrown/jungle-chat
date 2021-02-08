@@ -1,8 +1,6 @@
 add styling to message feed
-* feed is above, and is scrollable
-* user messages appear on right, others on left
-* display name is shown
-* Enter == Send
+* feed is above, and is scrollable just within the message feed
+* timestamp
 * display name for channel is used
 
 ensure mobile is fully supported
