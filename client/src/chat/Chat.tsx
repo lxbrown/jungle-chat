@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import FormControl from 'react-bootstrap/esm/FormControl';
 import InputGroup from 'react-bootstrap/esm/InputGroup';
-import Navbar from 'react-bootstrap/esm/Navbar';
 import { useRouteMatch } from 'react-router-dom';
 
 import useChat from './hooks/useChat';
@@ -58,17 +57,7 @@ export default function Chat() {
 
   return (
     <div className="container">
-      <Navbar bg="light" expand="sm">
-        <Navbar.Brand>
-          {channel}
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            You are {username}
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Navbar>
+      <h3 className="title">{channel}</h3>
       <div className="message-container">
         {messages.map((message, i, array) => (
           <MessageItem key={i} message={message} lastMessage={i > 0 ? array[i-1] : null}/>
@@ -77,9 +66,15 @@ export default function Chat() {
       </div>
       <div className="message-input container">
         <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="user-id">
+              {username}
+            </InputGroup.Text>
+          </InputGroup.Prepend>
           <FormControl
             placeholder="Message..."
             aria-label="Message..."
+            aria-describedby="user-id"
             value={messageText}
             onKeyPress={handleOnKeyPress}
             onChange={handleOnMessageChange}
