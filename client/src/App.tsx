@@ -10,7 +10,7 @@ import './App.css';
 export default function App() {
   return (
     <Router>
-      <Navbar bg="light" expand="sm">
+      <Navbar bg="light" expand="sm" fixed="top">
         <Navbar.Brand as={Link} to="/">
           <img
             alt=""

@@ -1,12 +1,9 @@
-prevent saving of temp room messages
-
 add styling to message feed
-* text box is fixed near bottom
-* send button to the right of text box
 * feed is above, and is scrollable
 * user messages appear on right, others on left
 * display name is shown
 * Enter == Send
+* display name for channel is used
 
 ensure mobile is fully supported
 

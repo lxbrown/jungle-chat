@@ -1,0 +1,13 @@
+.message-input {
+  bottom: 0;
+  position: fixed;
+  margin: inherit;
+  width: 100%;
+  padding: inherit;
+  left: 0;
+  right: 0;
+}
+
+.message-container {
+  margin-bottom: 3rem;
+}
