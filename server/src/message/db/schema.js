@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({          //Message history, stored by channel_id
     socket_id: String,                            //Will be updated to "user_id: Schema.Types.ObjectId" when User schema added
-    channel_id: String,                           //short_name of the channel
+    channel_id: { type: String, required: true },  //short_name of the channel
     display_name: String,                         //Will be removed when User schema added
     message_body: String,                         //Message text
     created_at: { type: Date, default: Date.now },//When the message was received
