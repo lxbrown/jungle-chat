@@ -1,8 +1,4 @@
-add styling to launch
-* center room stuff on the page
-* add a title at the top
-* move Start textbox below
-* style Start as a button
+prevent saving of temp room messages
 
 add styling to message feed
 * text box is fixed near bottom

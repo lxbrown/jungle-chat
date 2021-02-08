@@ -1,5 +1,6 @@
 .container {
   text-align: center;
+  margin-top: 10rem;
 }
 
 .rooms {
@@ -16,7 +17,7 @@
   text-align: center;
 }
 
-.active {
+.active-room {
   box-shadow: 0 0 5px red;
 }
 
@@ -33,4 +34,8 @@
   flex: 1 1 auto;
   min-height: 1px;
   padding: .75rem;
+}
+
+.new-channel-input {
+  margin: 0.5rem 0;
 }

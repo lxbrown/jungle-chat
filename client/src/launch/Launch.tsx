@@ -7,6 +7,7 @@ import useLaunch from './hooks/useLaunch';
 import { ChannelFeed, PersistentChannel} from '../interfaces';
 
 import './Launch.css';
+import Button from 'react-bootstrap/esm/Button';
 
 function Room(props: any) {
   const channel: PersistentChannel = props.channel;
@@ -19,7 +20,7 @@ function Room(props: any) {
   return (
     <Link to={`/${path}`} className="room-card">
       <Card>
-        <div className={`card-content ${ numUsers > 0 ? 'active' : '' }`}>
+        <div className={`card-content ${ numUsers > 0 ? 'active-room' : '' }`}>
           <Card.Text className="h6">{name}</Card.Text>
           <span className="hint">{numUsers} active</span>
         </div>
@@ -58,18 +59,18 @@ export default function Launch() {
       </div>
       <p>or</p>
       <h4>Use a temporary room</h4>
-      <p className="hint">These ones disappear</p>
+      <p className="hint">These ones don't</p>
       <div className="rooms">
         {channelFeed.map((feed: ChannelFeed, i) => !channels.find(channel => channel.short_name === feed.short_name) ? 
-        (<Room feed={feed} key={i}/>) : <p/>
+        (<Room feed={feed} key={i}/>) : null
         )}
       </div>
-      {/* display temporary rooms that are active. Will need to URL decode them */}
-      <input type="text" placeholder="Create a new room" value={tempChannel} onChange={handleOnInputChange} />
-      <Link to={`/${tempChannel}`} className="join-link">
-        {/* TODO: style as a button, URL encode the channel name */}
+      <div className="new-channel-input">
+        <input type="text" placeholder="Create a new room" value={tempChannel} onChange={handleOnInputChange} />
+      </div>
+      <Button as={Link} to={`/${tempChannel}`} className="join-link">
         Start
-      </Link>
-    </div>
+      </Button>
+  </div>
   )
 }
