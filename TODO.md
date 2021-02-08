@@ -1,3 +1,7 @@
+add sort index on created_at
+
+save display name with each message
+
 add styling to launch
 * center room stuff on the page
 * add a title at the top
@@ -14,11 +18,14 @@ add styling to message feed
 
 ensure mobile is fully supported
 
+add pagination for message scrolling
+
 don't url encode on channel persistence
 
 add scaling plans
 * redis
 * multiple dynos
+* stress test by loading in large # of messages
 
 see who else is in the channel (list of active users)
 
