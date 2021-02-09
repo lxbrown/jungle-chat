@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/esm/Button';
 
 import useLaunch from './hooks/useLaunch';
 import { ChannelFeed, PersistentChannel} from '../interfaces';
 
 import './Launch.css';
-import Button from 'react-bootstrap/esm/Button';
 
 function Room(props: any) {
   const channel: PersistentChannel = props.channel;
