@@ -39,7 +39,12 @@ export default function Chat() {
   useEffect(() => {
     function getChannel() {
       axios.get(`/api/channel/${channel_id}`).then((res) => {
-        setChannel(res.data);
+        if (res.data !== null) {
+          setChannel(res.data);
+        }
+        else {
+          setChannel({short_name: channel_id, display_name: channel_id, description: ''})
+        }
       });
     };
     getChannel();
@@ -68,7 +73,7 @@ export default function Chat() {
 
   return (
     <div className="container">
-      <h3 className="title">{channel ? channel.display_name : channel_id}</h3>
+      <h3 className="title">{channel ? channel.display_name : ''}</h3>
       <div className="message-container">
         {messages.map((message, i, array) => (
           <MessageItem key={i} message={message} lastMessage={i > 0 ? array[i-1] : null}/>
