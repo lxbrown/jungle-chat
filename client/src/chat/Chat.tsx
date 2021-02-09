@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
 import FormControl from 'react-bootstrap/esm/FormControl';
 import InputGroup from 'react-bootstrap/esm/InputGroup';
@@ -7,7 +8,7 @@ import { useRouteMatch } from 'react-router-dom';
 import useChat from './hooks/useChat';
 
 import './Chat.css';
-import { Message } from '../interfaces';
+import { Message, PersistentChannel } from '../interfaces';
 
 export interface MatchParams {
   channel: string;
@@ -27,12 +28,22 @@ function MessageItem(props: any) {
 }
 
 export default function Chat() {
-  const channel = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
+  const channel_id = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
 
-  const { messages, sendMessage, username } = useChat(channel);
+  const { messages, sendMessage, username } = useChat(channel_id);
   const [messageText, setMessageText] = useState('');
+  const [channel, setChannel] = useState<PersistentChannel>();
 
   const messagesEndRef = useRef<any>(null);
+
+  useEffect(() => {
+    function getChannel() {
+      axios.get(`/api/channel/${channel_id}`).then((res) => {
+        setChannel(res.data);
+      });
+    };
+    getChannel();
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -57,7 +68,7 @@ export default function Chat() {
 
   return (
     <div className="container">
-      <h3 className="title">{channel}</h3>
+      <h3 className="title">{channel ? channel.display_name : channel_id}</h3>
       <div className="message-container">
         {messages.map((message, i, array) => (
           <MessageItem key={i} message={message} lastMessage={i > 0 ? array[i-1] : null}/>

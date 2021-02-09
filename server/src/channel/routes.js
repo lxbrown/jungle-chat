@@ -11,6 +11,13 @@ const Routes = () => {
       res.json(err);
     });
   });
+  router.route('/:short_name').get((req, res, next) => {
+    interactions.getByShortName(req.params.short_name).then(channel => {
+      res.json(channel);
+    }, err => {
+      res.json(err);
+    });
+  });
   // Disabling the ability to create channels via an HTTP request. For
   // now, those can only be created internally.
   // router.route('').post((req, res, next) => {
