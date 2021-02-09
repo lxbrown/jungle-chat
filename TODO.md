@@ -1,7 +1,4 @@
 add styling to message feed
-* display name for channel is used
-  * if initial load, add server route and call get by short_name
-  * if coming from launch, can get through props
 * timestamp
 
 ensure mobile is fully supported
