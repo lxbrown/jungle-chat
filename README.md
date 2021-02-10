@@ -4,7 +4,7 @@ A simple, potentially scalable (soon to be lions, tigers, and bears themed) mess
 
 ## Live site
 
-Check it out at https://talk.lxbrown.dev
+Check it out at https://chat.lxbrown.dev
 
 ## Application Overview
 
