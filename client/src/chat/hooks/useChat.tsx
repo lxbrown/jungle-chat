@@ -39,7 +39,6 @@ const useChat = (chatId: string) => {
 
     socket.on(NEW_CHAT_MESSAGE_EVENT, onMessage);
     
-    getHistory(30, '');
     return () => {
       socket.off(NEW_CHAT_MESSAGE_EVENT, onMessage);
       socket.emit(LEAVE_CHAT_EVENT, chatId);

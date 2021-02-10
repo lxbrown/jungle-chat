@@ -69,14 +69,15 @@ export default function Chat() {
   }, [channel_id]);
 
   useEffect(() => {
-    if (!messagesStartVisible) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (!messagesStartVisible || (prevMessages.length === 0)) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, messagesStartVisible, prevMessages.length]);
   
   useEffect(() => {
-    if (messages.length > 0 && messagesStartVisible) {
-      getHistory(30, messages[0]._id);
+    if (messagesStartVisible) {
+      const from = messages.length ? messages[0]._id : '';
+      getHistory(30, from);
     }
   }, [messagesStartVisible, getHistory]);
 
