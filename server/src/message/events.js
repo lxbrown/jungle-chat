@@ -17,8 +17,8 @@ module.exports = (io, socket) => {
     const room = idToRoom(chatId);
     console.log(`messaging ${room}`);
 
-    interactions.sendMessage(socket.id, 'TODO', chatId, newMessage.message_body).then(() => {
-      io.in(room).emit('chat:message', newMessage);
+    interactions.sendMessage(socket.id, chatId, newMessage.message_body).then(savedMessage => {
+      io.in(room).emit('chat:message', savedMessage);
     }, err => {
       //TODO: write to internal log and notify user of failure
       console.log(err);
