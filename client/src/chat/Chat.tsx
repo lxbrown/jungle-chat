@@ -9,6 +9,7 @@ import useChat from './hooks/useChat';
 
 import './Chat.css';
 import { Message, PersistentChannel } from '../interfaces';
+import useOnScreen from '../hooks/useOnScreen';
 
 export interface MatchParams {
   channel: string;
@@ -22,11 +23,11 @@ function MessageItem(props: any) {
       {!lastMessage || (lastMessage.socket_id !== message.socket_id) ? (
         <div>
         {message.current_user ? [
-           <span className="timestamp on-left">{new Date(message.created_at).toLocaleString()}</span>,
-           <span className="username">{message.display_name}</span>
+           <span key="1" className="timestamp on-left">{new Date(message.created_at).toLocaleString()}</span>,
+           <span key="2" className="username">{message.display_name}</span>
          ] : [
-          <span className="username on-left">{message.display_name}</span>,
-          <span className="timestamp">{new Date(message.created_at).toLocaleString()}</span>
+          <span key="1" className="username on-left">{message.display_name}</span>,
+          <span key="2" className="timestamp">{new Date(message.created_at).toLocaleString()}</span>
          ]}
         </div>
       ) : null}
@@ -38,11 +39,20 @@ function MessageItem(props: any) {
 export default function Chat() {
   const channel_id = useRouteMatch<MatchParams>('/:channel')?.params.channel || '';
 
-  const { messages, sendMessage, username } = useChat(channel_id);
+  const { messages, sendMessage, getHistory, username } = useChat(channel_id);
   const [messageText, setMessageText] = useState('');
   const [channel, setChannel] = useState<PersistentChannel>();
 
+  const prevMessagesRef = useRef<Message[]>();
+
+  const messagesStartRef = useRef<any>(null);
   const messagesEndRef = useRef<any>(null);
+  const messagesStartVisible = useOnScreen(messagesStartRef);
+
+  useEffect(() => {
+    prevMessagesRef.current = messages;
+  });
+  const prevMessages = prevMessagesRef.current || [];
 
   useEffect(() => {
     function getChannel() {
@@ -56,11 +66,19 @@ export default function Chat() {
       });
     };
     getChannel();
-  }, []);
+  }, [channel_id]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
+    if (prevMessages.length === 0 || (messages.length && messages[messages.length-1].current_user)) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [messages]);
+  
+  useEffect(() => {
+    if (messages.length > 0 && messagesStartVisible) {
+      getHistory(30, messages[0]._id);
+    }
+  }, [messagesStartVisible, getHistory]);
 
   const handleOnMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(event.target.value);
@@ -83,6 +101,7 @@ export default function Chat() {
     <div className="container">
       <h3 className="title">{channel ? channel.display_name : ''}</h3>
       <div className="message-container">
+        <div ref={messagesStartRef} />
         {messages.map((message, i, array) => (
           <MessageItem key={i} message={message} lastMessage={i > 0 ? array[i-1] : null}/>
         ))}

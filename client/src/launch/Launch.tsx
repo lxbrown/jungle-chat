@@ -42,6 +42,8 @@ export default function Launch() {
       })
     };
     getChannels();
+
+    return setChannels([]);
   }, []);
 
   const handleOnInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,5 @@
 export interface Message {
+  _id: string;
   message_body: string;
   socket_id: string;
   display_name: string;

@@ -32,7 +32,7 @@ module.exports = () => {
       query._id = { $lt: from }
     }
     return model.find(query).
-      limit(limit || 20).
+      limit(limit || 30).
       sort('-created_at').
       exec();
   };

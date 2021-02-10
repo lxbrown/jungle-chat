@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 import { Message, NewMessage } from '../../interfaces';
@@ -13,16 +13,22 @@ const useChat = (chatId: string) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [username, setUsername] = useState<String>('');
 
+  const getHistory = useCallback((limit, from) => {
+    axios.get(`/api/message/channel/${chatId}`, {
+        params: {
+          limit: limit,
+          from: from
+        }
+      }).then((res) => {
+        const ordered = res.data.reverse();
+        setMessages((messages) => [...ordered, ...messages]);
+    })
+  }, [chatId]);
+
   useEffect(() => {
     socket.emit(JOIN_CHAT_EVENT, chatId, (display_name: string) => {
       setUsername(display_name);
     });
-
-    function getHistory() {
-      axios.get(`/api/message/channel/${chatId}`).then((res) => {
-        setMessages(res.data.reverse());
-      })
-    }
 
     function onMessage(message: Message) {
       if (message.socket_id === socket.id) {
@@ -31,14 +37,14 @@ const useChat = (chatId: string) => {
       setMessages((messages) => [...messages, message]);
     };
 
-    getHistory();
     socket.on(NEW_CHAT_MESSAGE_EVENT, onMessage);
     
+    getHistory(30, '');
     return () => {
       socket.off(NEW_CHAT_MESSAGE_EVENT, onMessage);
       socket.emit(LEAVE_CHAT_EVENT, chatId);
     };
-  }, [chatId]);
+  }, [chatId, getHistory]);
 
   const sendMessage = (messageText: string) => {
     const new_message: NewMessage = {
@@ -47,7 +53,7 @@ const useChat = (chatId: string) => {
     socket.emit(NEW_CHAT_MESSAGE_EVENT, chatId, new_message);
   };
 
-  return { messages, sendMessage, username };
+  return { messages, sendMessage, getHistory, username };
 };
 
 export default useChat;
