@@ -1,12 +1,12 @@
-## Jungle Chat
+# Jungle Chat
 
 A simple, potentially scalable (soon to be lions, tigers, and bears themed) messaging app
 
-### Live site
+## Live site
 
 Check it out at https://talk.lxbrown.dev
 
-### Application Overview
+## Application Overview
 
 This project wasn't intended to fill any market need, or to really be used, other than for the experience of building a full-stack messaging application.
 
@@ -23,7 +23,7 @@ I'm quite happy with where this project is at right now. When I started, I don't
 
 I don't consider myself a UX designer by any means, I'm very aware it isn't the greatest *looking* application, but the fundamentals it's built on should be solid. :) 
 
-### Getting Started
+## Getting Started
 
 This application is built using Node.js for the server implementation, React for the client implementation, Heroku for hosting and MongoDB for storage.
 
