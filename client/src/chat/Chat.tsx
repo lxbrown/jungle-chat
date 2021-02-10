@@ -69,7 +69,7 @@ export default function Chat() {
   }, [channel_id]);
 
   useEffect(() => {
-    if (prevMessages.length === 0 || (messages.length && messages[messages.length-1].current_user)) {
+    if (!messagesStartVisible) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }
   }, [messages]);
