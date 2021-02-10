@@ -24,11 +24,15 @@ module.exports = () => {
     });
   };
 
-  const getByChannel = (channel, limit) => {
-    return model.find({
-      channel_id: channel
-    }).
-      limit(limit).
+  const getByChannel = (channel, limit, from) => {
+    let query = {
+      channel_id: channel,
+    }
+    if (from) {
+      query._id = { $lt: from }
+    }
+    return model.find(query).
+      limit(limit || 20).
       sort('-created_at').
       exec();
   };
