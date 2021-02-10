@@ -27,8 +27,15 @@
 }
 
 .username {
-  display: block;
   font-weight: bold;
+}
+
+.timestamp {
+  color: grey;
+}
+
+.on-left {
+  padding-right: 1rem;
 }
 
 .message-body {

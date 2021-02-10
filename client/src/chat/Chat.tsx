@@ -20,8 +20,16 @@ function MessageItem(props: any) {
   return (
     <li className={`message-item ${message.current_user ? "sent-message" : "received-message"}`}>
       {!lastMessage || (lastMessage.socket_id !== message.socket_id) ? (
-          <span className="username">{message.display_name}</span>
-        ) : null}
+        <div>
+        {message.current_user ? [
+           <span className="timestamp on-left">{new Date(message.created_at).toLocaleString()}</span>,
+           <span className="username">{message.display_name}</span>
+         ] : [
+          <span className="username on-left">{message.display_name}</span>,
+          <span className="timestamp">{new Date(message.created_at).toLocaleString()}</span>
+         ]}
+        </div>
+      ) : null}
       <span className="message-body">{message.message_body}</span>
     </li>
   )
