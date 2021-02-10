@@ -1,12 +1,3 @@
-add styling to message feed
-* timestamp
-
-ensure mobile is fully supported
-
-add pagination for message scrolling
-
-don't url encode on channel persistence
-
 add scaling plans
 * redis
 * multiple dynos
