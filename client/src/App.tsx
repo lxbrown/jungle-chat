@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -37,6 +37,7 @@ export default function App() {
         <Route exact path="/:channel">
           <Chat />
         </Route>
+        <Redirect to="/" />
       </Switch>
     </Router>
   );
